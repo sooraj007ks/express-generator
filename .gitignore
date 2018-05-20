@@ -1,5 +1,6 @@
 .idea
 *.pyc
+*.json
 node_modules
 *.bat
 build
