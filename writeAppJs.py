@@ -23,7 +23,7 @@ class PrepareAppJs():
         self.appJsCodes += '''
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
- 
+app.use(require('helmet')());\n 
 app.use(express.json());\n
 app.use(express.urlencoded({ extended: true }));\n
 app.use(cookieParser());\n

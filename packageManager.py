@@ -16,11 +16,12 @@ class PackageManager(object):
                   "dependencies": {
                       "http-errors" : "*",
                       "cookie-parser": "*",
-                      "express" : "*"
+                      "express" : "*",
+					  "helmet":"*"
                   }
                 }
     def writePackageJsonFile(self, modules):
-        defaultModules = ['http-errors', 'cookie-parser', 'express']
+        defaultModules = ['http-errors', 'cookie-parser', 'express', 'helmet']
         for item in modules:
             if item not in defaultModules:
                 self.packageData["dependencies"][item] = "*"

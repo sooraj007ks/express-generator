@@ -98,11 +98,12 @@ module.exports = router;
             self.reportError('creating public directory files', e)
 
     def installDependencies(self):
-        data = 'cd {0}\n npm install\npause'.format(os.getcwd())
+        data = 'cd {0}\nnpm install\ncode .\npause'.format(os.getcwd())
         try:
             with open("run.bat", 'w') as fh:
                 fh.write(data)
             os.startfile("run.bat")
+            os.startfile("app.js")
         except Exception as e:
             self.reportError('trying to install', e)
 
@@ -123,7 +124,7 @@ def main():
         generator.prepareNecessaryFiles()
         # print gen.templateEngine
         break
-    raw_input('Press any key to quit')
+    #raw_input('Press any key to quit')
 
 
 if __name__ == '__main__':
