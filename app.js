@@ -29,7 +29,7 @@ app.use('/users', usersRouter);
 
 
 app.listen(port, ()=>{
-    console.log('Yeah, I\'m ready');
+    console.log();
 });
 
 module.exports = app;

@@ -32,7 +32,7 @@ app.use('/', indexRouter);\n
 app.use('/users', usersRouter);\n
 
 app.listen(port, ()=>{
-    console.log('Yeah, I\'m ready.');
+    console.log(`Server started on port ${port}`);
 });
 
 module.exports = app;\n
