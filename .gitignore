@@ -1,0 +1,9 @@
+.idea
+*.pyc
+node_modules
+*.bat
+build
+dist
+public
+routes
+views
