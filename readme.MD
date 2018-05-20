@@ -5,3 +5,7 @@ installs all the dependencies specified when creating directory. It will also im
 of them to the project main file.
 
 You can add more dependencies after a space.
+
+Run ExpressGenerator.exe to use the tool.
+It will work in windows 10. For others, download the source code and
+compile using pyinstaller in your computer.
