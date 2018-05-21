@@ -7,7 +7,7 @@ from writeAppJs import PrepareAppJs
 class ExpressGenerator(Errors, PackageManager, PrepareAppJs):
     templateEngine = gen.templateEngine
     requiredModules = gen.requiredModules
-
+    modulesToInstall = []
     directoriesRequired = [
         'node_modules',
         'public',
@@ -98,12 +98,14 @@ module.exports = router;
             self.reportError('creating public directory files', e)
 
     def installDependencies(self):
-        data = 'cd {0}\nnpm install\ncode .\npause'.format(os.getcwd())
+        # data = 'cd {0}\nnpm install\ncode .\npause'.format(os.getcwd())
+        data = 'cd {0}\nnpm install\npause'.format(os.getcwd())
+
         try:
             with open("run.bat", 'w') as fh:
                 fh.write(data)
             os.startfile("run.bat")
-            os.startfile("app.js")
+            # os.startfile("app.js")
         except Exception as e:
             self.reportError('trying to install', e)
 
@@ -113,9 +115,10 @@ module.exports = router;
         self.fillRouterFolder()
         self.fillViewsFolder()
         self.writePackageJsonFile(self.requiredModules)
-        self.importModulesInAppJs(self.requiredModules)
+        self.importModulesInAppJs(self.modulesToInstall)
         self.configureAppJs(self.templateEngine)
-        self.installDependencies()
+        if gen.requiredModules[-1] in ['-i', '-install']:
+            self.installDependencies()
 
 
 def main():

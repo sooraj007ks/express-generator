@@ -18,25 +18,22 @@ class PrepareAppJs():
 
     def configureAppJs(self, viewEngine):
         self.appJsCodes += "\nconst app = express();\n\n// view engine setup" \
-                           "\napp.set('views', path.join(__dirname, 'views'));\n"
-        self.appJsCodes += "app.set('view engine', '{0}');\n".format(viewEngine)
-        self.appJsCodes += '''
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-app.use(require('helmet')());\n 
-app.use(express.json());\n
-app.use(express.urlencoded({ extended: true }));\n
-app.use(cookieParser());\n
-app.use(express.static(path.join(__dirname, 'public')));\n
-app.use('/', indexRouter);\n
-app.use('/users', usersRouter);\n
+                           "\napp.set('views', path.join(__dirname, 'views'));\n\n"
+        self.appJsCodes += "app.set('view engine', '{0}');\n\n".format(viewEngine)
+        self.appJsCodes += "app.use(express.json());\n" \
+                            "app.use(express.urlencoded({ extended: true }));\n" \
+                            "app.use(cookieParser());\n\n" \
+                           "app.use(express.static(path.join(__dirname, 'public')));\n\n" \
+                           "const indexRouter = require('./routes/index');\n" \
+                            "const usersRouter = require('./routes/users');\n\n" \
+                            "app.use(require('helmet')()); \n\n" \
+                            "app.use('/', indexRouter);\n" \
+                            "app.use('/users', usersRouter);\n\n" \
+                            "app.listen(port, ()=>{\n" \
+                            "    console.log(`Server started on port ${port}`);\n" \
+                            "});\n\n" \
+                            "module.exports = app;" \
 
-app.listen(port, ()=>{
-    console.log(`Server started on port ${port}`);
-});
-
-module.exports = app;\n
-    '''
         with open('app.js', 'w') as jsFile:
             jsFile.write(self.appJsCodes)
 
